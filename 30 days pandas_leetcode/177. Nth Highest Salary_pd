@@ -1,0 +1,9 @@
+import pandas as pd
+import numpy as np
+
+def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
+    column_name = f"getNthHighestSalary({N})"
+    unique_salaries =  np.sort(pd.unique(employee["salary"]))[::-1]
+    if N > len(unique_salaries):
+        return pd.DataFrame(data=[None], columns = [column_name]).reset_index(drop=True)
+    return pd.DataFrame(data=[unique_salaries[N-1]], columns = [column_name]).reset_index(drop=True)
